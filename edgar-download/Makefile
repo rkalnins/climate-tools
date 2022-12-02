@@ -1,8 +1,19 @@
+# path containing list of sector codes
 codes := codes
+
+# range of years
 years := 2021-2021
+
+# url output file
 output := edgar_urls
+
+# path to zip downloads
 download_destination := downloads
+
+# path to final unzipped files
 unzip_destination := nc_files
+
+# delay consecutive wget downloads to prevent bans from servers
 delay := 5
 
 
