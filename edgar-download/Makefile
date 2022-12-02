@@ -21,7 +21,7 @@ all: generate download unzip
 
 .PHONY: clean
 clean:
-	rm -rf $(unzip_destination) $(download_destination)
+	rm -rf $(download_destination)
 	rm edgar_urls
 
 .PHONY: generate
