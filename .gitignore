@@ -1,6 +1,8 @@
 .DS_Store
 
-edgar_urls
+edgar-download/edgar_urls
+edgar-download/downloads
+edgar-download/nc_files
 
 __pycache__
 
