@@ -5,5 +5,7 @@ edgar-download/downloads
 edgar-download/nc_files
 
 __pycache__
+*.egg-info/
+*.egg
 
 *.swp
