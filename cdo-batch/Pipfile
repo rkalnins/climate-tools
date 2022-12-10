@@ -9,6 +9,7 @@ cdobatch = {editable = true, path = "."}
 
 [dev-packages]
 black = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
