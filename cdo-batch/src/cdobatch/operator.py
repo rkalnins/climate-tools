@@ -2,7 +2,6 @@ from __future__ import annotations
 from node import Node
 
 
-
 class Operator:
     operator: str
     parameter: str
