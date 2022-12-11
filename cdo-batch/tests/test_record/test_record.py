@@ -3,6 +3,7 @@ from cdobatch.node import Node
 
 import json
 
+
 def test_record_add():
     r = Record("tests/data/dataset.json")
     r.load()
@@ -10,6 +11,7 @@ def test_record_add():
     assert len(r.root_nodes) == 1
     r.add_node(Node("tmp", "tmp/out"))
     assert len(r.root_nodes) == 2
+
 
 def test_record_load():
     with Record("tests/data/dataset.json") as r:
@@ -23,6 +25,7 @@ def test_record_load():
         assert b.name == "node_b"
         assert b.path == "b/samples"
         assert b.get_root_path() == "b/samples"
+
 
 def test_record_index():
     with Record("tests/data", index_name="tmp.json") as r:

@@ -51,7 +51,9 @@ class Record:
             for file in files:
                 if file.endswith(".nc"):
                     print(os.path.join(root, file), self.path)
-                    all_paths.append(os.path.relpath(os.path.join(root, file), self.path))
+                    all_paths.append(
+                        os.path.relpath(os.path.join(root, file), self.path)
+                    )
 
         # create root node with all files
         self.root_nodes.append(Node("root", self.path, files=all_paths))
