@@ -44,7 +44,10 @@ from cdobatch.op import Operator
 
 with Record(load_path="CMIP6_data/tas/MODELS_filtered/ssp585") as r:
     # split tree recursively twice using filesystem paths
-    input_nodes = r.fs_split(2)
+    input_nodes = r.get_node("root").path_split(["seasonal_avg/Projections",
+                                                 "seasonal_avg/Historical"
+                                                 "year_avg/Projections",
+                                                 "year_avg/Historical"])
 
     ops = list()
     output_node = Node("outputs", "iceshelves")

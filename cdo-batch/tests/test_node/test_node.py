@@ -21,6 +21,45 @@ def test_create_node():
     assert n.files == files
 
 
+def test_path_split():
+    files = [
+        "test/file1.nc",
+        "test/file2.nc",
+        "test/file3.nc",
+        "test/a/a1.nc",
+        "test/a/a2.nc",
+        "test/b/b1.nc",
+    ]
+    root = Node("root", "", files)
+
+    split_nodes = root.path_split(["test/a", "test/b"], ["in_a", "in_b"])
+    split_a = split_nodes[0]
+    split_b = split_nodes[1]
+
+    assert len(root.children) == 2
+
+    assert root.files == [
+        "test/file1.nc",
+        "test/file2.nc",
+        "test/file3.nc",
+    ]
+
+    assert split_a.name == "in_a"
+    assert split_a.parent == root
+    assert split_a.path == "test/a"
+    assert split_a.files == [
+        "a1.nc",
+        "a2.nc",
+    ]
+
+    assert split_b.name == "in_b"
+    assert split_b.parent == root
+    assert split_b.path == "test/b"
+    assert split_b.files == [
+        "b1.nc",
+    ]
+
+
 def test_node_tree_create():
     n = Node("output", "/path/to/output")
     a = Node("out_a", "samples/a")

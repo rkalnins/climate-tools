@@ -50,7 +50,6 @@ class Record:
         for root, dirs, files in os.walk(self.path):
             for file in files:
                 if file.endswith(".nc"):
-                    print(os.path.join(root, file), self.path)
                     all_paths.append(
                         os.path.relpath(os.path.join(root, file), self.path)
                     )

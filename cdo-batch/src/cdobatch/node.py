@@ -37,6 +37,51 @@ class Node:
 
         return os.path.join(self.parent.get_root_path(), self.path)
 
+    def path_split(self, paths, node_names=None):
+
+        # split off filesystem parts using paths into len(paths) nodes
+        # one node, per path
+
+        # node (a): "some/path"
+        #   files:
+        #       s/a/f0.nc
+        #       s/b/f1.nc
+        #       s/c/f2.nc
+        #
+        #
+        # node (a): "some/path"
+        #   files:
+        #       s/c/f2.nc
+        #   children:
+        #       node (a): "s/a"
+        #           files:
+        #               f0.nc
+        #       node (b): "s/b"
+        #           files:
+        #               f1.nc
+
+        i = 0
+        new_nodes = []
+        for p in paths:
+            matching_paths = list(filter(lambda f: f.startswith(p), self.files))
+            self.files = list(filter(lambda f: f not in matching_paths, self.files))
+
+            if node_names is None:
+                name = self.name + p
+            else:
+                name = node_names[i]
+
+            new_relative_paths = [
+                os.path.relpath(mp, p) for mp in matching_paths
+            ]
+            n = Node(name, p, new_relative_paths)
+            self.add_child(n)
+            new_nodes.append(n)
+
+            i += 1
+
+        return new_nodes
+
     def add_child(self, node):
         node.parent = self
         self.children.append(node)
